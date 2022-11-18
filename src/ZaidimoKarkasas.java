@@ -31,15 +31,15 @@ public class ZaidimoKarkasas extends Kvadratas{
     }
     private void nuspalvintiKarkasoLinijas(Graphics grafika) {
         grafika.setColor(Color.BLACK);
-        int y2 = pozicija.b+aukstis;
-        int y1 = pozicija.b;
+        int a2 = pozicija.b+aukstis;
+        int a1 = pozicija.b;
         for(int i = 0; i < karkasoLangai.length+1; i++)
-            grafika.drawLine(pozicija.a+i * karkasoLangai[0][0].plotis, y1, pozicija.a+i * karkasoLangai[0][0].plotis, y2);
+            grafika.drawLine(pozicija.a+i * karkasoLangai[0][0].plotis, a1, pozicija.a+i * karkasoLangai[0][0].plotis, a2);
 
-        int x2 = pozicija.a+plotis;
-        int x1 = pozicija.a;
+        int b2 = pozicija.a+plotis;
+        int b1 = pozicija.a;
         for(int i = 0; i < karkasoLangai[0].length+1; i++)
-            grafika.drawLine(x1, pozicija.b+i * karkasoLangai[0][0].aukstis, x2, pozicija.b+i * karkasoLangai[0][0].aukstis);
+            grafika.drawLine(b1, pozicija.b+i * karkasoLangai[0][0].aukstis, b2, pozicija.b+i * karkasoLangai[0][0].aukstis);
     }
     public void atnaujinti() {
         for(int x = 0; x < karkasoLangai.length; x++) {
@@ -56,8 +56,8 @@ public class ZaidimoKarkasas extends Kvadratas{
     public void ZaistiEjima(Pozicija pozicija, int zaidejas) {
         ejimonumeris++;
         karkasoLangai[pozicija.a][pozicija.b].nustatytiLangelioBusena(zaidejas);
-        List<Pozicija> changeCellPositions = gautiPakeistasPozicijasKitamJudesiui(pozicija, zaidejas);
-        for(Pozicija pakeistiPozicija : changeCellPositions) {
+        List<Pozicija> PakeistiLangeliuPozicija = gautiPakeistasPozicijasKitamJudesiui(pozicija, zaidejas);
+        for(Pozicija pakeistiPozicija : PakeistiLangeliuPozicija) {
             karkasoLangai[pakeistiPozicija.a][pakeistiPozicija.b].nustatytiLangelioBusena(zaidejas);
         }
         AtnaujintiGalimusEjimus(zaidejas == 1 ? 2 : 1);
