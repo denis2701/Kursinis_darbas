@@ -14,7 +14,7 @@ public class KarkasoLangai extends Kvadratas {
     public void nustatytiLangelioBusena(int naujasZaidimoStatusas) {
         this.langeliobukle = naujasZaidimoStatusas;
     }
-    public int gautiLangelioBusena() {
+    public int gautiLangelioBukle() {
         return langeliobukle;
     }
     public void NustatytiRibojima(boolean ribojimas) {

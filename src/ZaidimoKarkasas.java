@@ -73,18 +73,6 @@ public class ZaidimoKarkasas extends Kvadratas{
     public boolean GalimasEjimas(Pozicija pozicija) {
         return gautiVisusGalimusEjimus().contains(pozicija);
     }
-    public int gautiLaimetoja(boolean yradarGalimiEjimai) {
-        int[] skaicius = new int[3];
-        for(int y = 0; y < karkasoLangai[0].length; y++) {
-            for(int x = 0; x < karkasoLangai.length; x++) {
-                skaicius[karkasoLangai[x][y].gautiLangelioBusena()]++;
-            }
-        }
-
-        if(yradarGalimiEjimai && skaicius[0] > 0) return 0;
-        else if(skaicius[1] == skaicius[2]) return 3;
-        else return skaicius[1] > skaicius[2] ? 1 : 2;
-    }
     public void AtnaujintiGalimusEjimus(int zaidejoID) {
         for(Pozicija galimasEjimas : galimiEjimai) {
             karkasoLangai[galimasEjimas.a][galimasEjimas.b].NustatytiRibojima(false);
@@ -95,7 +83,7 @@ public class ZaidimoKarkasas extends Kvadratas{
             int vidurkisVertikalus = karkasoLangai[0].length/2-1;
             for (int a = vidurkisHorizantalus; a < vidurkisHorizantalus+2; a++) {
                 for (int b = vidurkisVertikalus; b < vidurkisVertikalus+2; b++) {
-                    if (karkasoLangai[a][b].gautiLangelioBusena() == 0) {
+                    if (karkasoLangai[a][b].gautiLangelioBukle() == 0) {
                         galimiEjimai.add(new Pozicija(a, b));
                     }
                 }
@@ -103,7 +91,7 @@ public class ZaidimoKarkasas extends Kvadratas{
         } else {
             for (int a = 0; a < karkasoLangai.length; a++) {
                 for (int b = 0; b < karkasoLangai[0].length; b++) {
-                    if (karkasoLangai[a][b].gautiLangelioBusena() == 0 && gautiPakeistasPozicijasKitamJudesiui(new Pozicija(a, b),zaidejoID).size()>0) {
+                    if (karkasoLangai[a][b].gautiLangelioBukle() == 0 && gautiPakeistasPozicijasKitamJudesiui(new Pozicija(a, b),zaidejoID).size()>0) {
                         galimiEjimai.add(new Pozicija(a, b));
                     }
                 }
@@ -118,11 +106,11 @@ public class ZaidimoKarkasas extends Kvadratas{
         Pozicija ejimoPozicija = new Pozicija(pozicija);
         int kitasZaidejas = zaidejoID == 1 ? 2 : 1;
         ejimoPozicija.prideti(kryptis);
-        while(YraLentelesRibose(ejimoPozicija) && karkasoLangai[ejimoPozicija.a][ejimoPozicija.b].gautiLangelioBusena() == kitasZaidejas) {
+        while(YraLentelesRibose(ejimoPozicija) && karkasoLangai[ejimoPozicija.a][ejimoPozicija.b].gautiLangelioBukle() == kitasZaidejas) {
             rezultatas.add(new Pozicija(ejimoPozicija));
             ejimoPozicija.prideti(kryptis);
         }
-        if(!YraLentelesRibose(ejimoPozicija) || karkasoLangai[ejimoPozicija.a][ejimoPozicija.b].gautiLangelioBusena() != zaidejoID) {
+        if(!YraLentelesRibose(ejimoPozicija) || karkasoLangai[ejimoPozicija.a][ejimoPozicija.b].gautiLangelioBukle() != zaidejoID) {
             rezultatas.clear();
         }
         return rezultatas;
